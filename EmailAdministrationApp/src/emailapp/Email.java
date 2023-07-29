@@ -20,12 +20,13 @@ public class Email {
 		System.out.println("Email Created: " + this.firstName + " " + this.lastName);
 		this.department = setDepartment();
 		System.out.println("Department: " + this.department);
-		this.password = randomPassword(defaultPasswordLength);
-		System.out.println("Your password is: " + this.password);
 		// Generate Email in firstName.lastName@department.companyName.com
 		this.companyName = companyName;
 		this.email = this.firstName.toLowerCase() + "." + this.lastName.toLowerCase() + "@" + this.department.toLowerCase() + "." + this.companyName.toLowerCase();
 		System.out.println("Your email is: " + this.email);
+		// Set password
+		this.password = randomPassword(defaultPasswordLength);
+		System.out.println("Your password is: " + this.password);
 	}
 	
 	// Get the details of the department
@@ -33,6 +34,7 @@ public class Email {
 		System.out.print("Department Codes \n1. Sales \n2. Accounting \n3. Marketing \n4. Development \n0. None \nEnter Department Code: ");
 		Scanner sc = new Scanner(System.in);
 		int depChoice = sc.nextInt();
+		sc.close();
 		switch (depChoice) {
 			case 1: return "Sales";
 			case 2: return "Accounting";
