@@ -19,11 +19,8 @@ public class Album {
 	public boolean addSong(String title, double duration) {
 		if (findSong(title) == null) {
 			songs.add(new Song(title, duration));
-			System.out.println("Song added to the list");
 			return true;
 		}
-		
-		System.out.println("Song already exists in the playlist");
 		return false;
 	}
 	
@@ -42,7 +39,6 @@ public class Album {
 			playList.add(this.songs.get(index));
 			return true;
 		}
-		System.out.println("Song doesn't exist");
 		return false;
 	}
 	
@@ -53,7 +49,6 @@ public class Album {
 				return true;
 			}
 		}
-			System.out.println("Song doesn't exists");
 			return false;
 	}
 }

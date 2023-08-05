@@ -24,9 +24,9 @@ public class Main {
 		
 		LinkedList<Song> playList_1 = new LinkedList<>();
 		albums.get(0).addToPlaylist("Perfect", playList_1);
-		albums.get(1).addToPlaylist("Rap god", playList_1);
-		albums.get(3).addToPlaylist("What makes you beautiful", playList_1);
-		albums.get(4).addToPlaylist("Loose yourself", playList_1);
+		albums.get(0).addToPlaylist("Rap god", playList_1);
+		albums.get(0).addToPlaylist("What makes you beautiful", playList_1);
+		albums.get(1).addToPlaylist("Loose yourself", playList_1);
 		
 		play(playList_1);
 	}
@@ -68,6 +68,61 @@ public class Main {
 					System.out.println("Reached the end of the list");
 					forward = false;
 				}
+				break;
+			
+			case 2:
+				if(forward) {
+					if(listIterator.hasPrevious()) {
+						listIterator.previous();
+					}
+					forward = false;
+				}
+				if(listIterator.hasPrevious()) {
+					System.out.println("Now playing: " + listIterator.previous().toString());
+				} else {
+					System.out.println("We are at the begining of the playlist");
+				}
+				break;
+				
+			case 3:
+				if(forward) {
+					if(listIterator.hasPrevious()) {
+						System.out.println("Now playing: " + listIterator.previous().toString());
+						forward = false;
+					} else {
+						System.out.println("We are at the begining of the playlist");
+					}
+				} else {
+					if(listIterator.hasNext()) {
+						System.out.println("Now playing " + listIterator.next().toString());
+						forward = true;
+					} else {
+						System.out.println("Reached the end of the list");
+					}
+				}
+				break;
+				
+			case 4:
+				printList(playList);
+				break;
+				
+			case 5:
+				printMenu();
+				break;
+				
+			case 6:
+				if(playList.size() > 0) {
+					listIterator.remove();
+					if(listIterator.hasNext()) {
+						System.out.println("Now playing: " + listIterator.next().toString());
+						forward = true;
+					} else {
+						if(listIterator.hasPrevious()) {
+							System.out.println("Now playing: " + listIterator.previous().toString());
+						}
+					}
+				}
+				break;
 				
 			}
 		}
