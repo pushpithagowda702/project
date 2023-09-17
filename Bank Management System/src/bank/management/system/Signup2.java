@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLOutput;
 
 public class Signup2 extends JFrame implements ActionListener {
 
@@ -181,14 +182,46 @@ public class Signup2 extends JFrame implements ActionListener {
 
         setLayout(null);
         setSize(850, 750);
-        setLocation(450, 80);
+        setLocation(400, 20);
         getContentPane().setBackground(new Color(187, 216, 234));
         setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String rel = (String) comboBox.getSelectedItem();
+        String cat = (String) comboBox2.getSelectedItem();
+        String inc = (String) comboBox3.getSelectedItem();
+        String edu = (String) comboBox4.getSelectedItem();
+        String occ = (String) comboBox5.getSelectedItem();
+        String pan = textPan.getText();
+        String adhaar = textAdhaar.getText();
+        String sCitizen = "";
+        if(s1.isSelected()) {
+            sCitizen += "Yes";
+        } else if(s2.isSelected()) {
+            sCitizen += "No";
+        }
+        String eAcc = "";
+        if(e1.isSelected()) {
+            eAcc += "Yes";
+        } else if(e2.isSelected()) {
+            eAcc += "No";
+        }
 
+        try {
+            if(textPan.getText().equals("") || textAdhaar.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Fill all the fields");
+            } else {
+                Con c1 = new Con();
+                String q = "insert into signuptwo values('"+formNo+"', '"+rel+"', '"+cat+"', '"+inc+"', '"+edu+"', '"+occ+"', '"+pan+"', '"+adhaar+"', '"+sCitizen+"', '"+eAcc+"')";
+                c1.statement.executeUpdate(q);
+                new Signup3(formNo);
+                setVisible(false);
+            }
+        } catch (Exception E) {
+            E.printStackTrace();
+        }
     }
     public static void main(String[] args) {
         new Signup2("");
