@@ -1,1 +1,0 @@
-INDEX VERSION 1.134+/home/pushpitha/Documents/Projects/.metadata/.plugins/org.eclipse.jdt.core
